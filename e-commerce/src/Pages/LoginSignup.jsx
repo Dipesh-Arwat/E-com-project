@@ -18,7 +18,7 @@ const LoginSignup = () => {
     console.log('Login Function Executed',formData);
 
     let responseData;
-    await fetch('https://e-com-project-backend.onrender.com/login',{
+    await fetch('http://localhost:4000/login',{
       method:'POST',
       headers:{
         Accept:'application/form-data',
@@ -41,7 +41,7 @@ const LoginSignup = () => {
     console.log('Sign Up Function Executed',formData);
 
     let responseData;
-    await fetch('https://e-com-project-backend.onrender.com/signup',{
+    await fetch('http://localhost:4000/signup',{
       method:'POST',
       headers:{
         Accept:'application/form-data',
