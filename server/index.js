@@ -12,7 +12,13 @@ const { type } = require("os");
 const port = process.env.PORT || 4000;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+    {
+        origin: ["https://deploy-mern-1whq.vercel.app"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
 
 // Qt1f3BVir5wXGXRj
 // mongodb+srv://dipesharwat80:<password>@clusterecommerce.thmav9d.mongodb.net/
