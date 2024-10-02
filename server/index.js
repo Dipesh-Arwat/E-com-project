@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
+const connectDB = require('./config/db');
 const { error } = require("console");
 const { type } = require("os");
 
@@ -12,13 +13,7 @@ const { type } = require("os");
 const port = process.env.PORT || 4000;
 
 app.use(express.json());
-app.use(cors(
-    {
-        origin: ["https://deploy-mern-1whq.vercel.app"],
-        methods: ["POST", "GET"],
-        credentials: true
-    }
-));
+app.use(cors());
 
 // Qt1f3BVir5wXGXRj
 // mongodb+srv://dipesharwat80:<password>@clusterecommerce.thmav9d.mongodb.net/
@@ -26,7 +21,9 @@ app.use(cors(
 
 // ---------  Database connection with MongoDB  -----------
 
-mongoose.connect("mongodb+srv://dipesharwat80:Qt1f3BVir5wXGXRj@clusterecommerce.thmav9d.mongodb.net/e-commerce")
+// mongoose.connect("mongodb+srv://dipesharwat80:Qt1f3BVir5wXGXRj@clusterecommerce.thmav9d.mongodb.net/e-commerce")
+// Connect to MongoDB
+connectDB();
 
 
 
