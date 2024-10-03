@@ -6,8 +6,7 @@ const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 const connectDB = require('./config/db');
-const { error } = require("console");
-const { type } = require("os");
+
 
 
 const port = process.env.PORT || 4000;
