@@ -12,7 +12,11 @@ const connectDB = require('./config/db');
 const port = process.env.PORT || 4000;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: "*",
+    credentials: true,
+    methods: ["GET", "POST"]
+}));
 
 // Qt1f3BVir5wXGXRj
 // mongodb+srv://dipesharwat80:<password>@clusterecommerce.thmav9d.mongodb.net/
@@ -282,7 +286,7 @@ const fetchUser = async (req, res, next) => {
 app.post('/addtocart', fetchUser, async (req, res) => {
 
     let userData = await Users.findOne({ _id: req.user.id });
-    console.log("added",req.body.itemId);
+    console.log("added", req.body.itemId);
     userData.cartData[req.body.itemId] += 1;
     await Users.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
     res.send("Added")
@@ -291,12 +295,12 @@ app.post('/addtocart', fetchUser, async (req, res) => {
 
 // ------- Creating Endpoint to remove product from cartData ------
 
-app.post('/removefromcart',fetchUser, async (req, res) => {
+app.post('/removefromcart', fetchUser, async (req, res) => {
     let userData = await Users.findOne({ _id: req.user.id });
-    console.log("removed",req.body.itemId);
-    
-    if(userData.cartData[req.body.itemId]>0)
-    userData.cartData[req.body.itemId] -= 1;
+    console.log("removed", req.body.itemId);
+
+    if (userData.cartData[req.body.itemId] > 0)
+        userData.cartData[req.body.itemId] -= 1;
     await Users.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
     res.send("Removed")
 })
@@ -309,7 +313,7 @@ app.post('/getcart', fetchUser, async (req, res) => {
     console.log("Get Cart");
     let userData = await Users.findOne({ _id: req.user.id });
     res.json(userData.cartData);
-   
+
 })
 
 
