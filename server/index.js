@@ -12,11 +12,7 @@ const connectDB = require('./config/db');
 const port = process.env.PORT || 4000;
 
 app.use(express.json());
-app.use(cors({
-    origin: "*",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"]
-}));
+app.use(cors());
 
 // Qt1f3BVir5wXGXRj
 // mongodb+srv://dipesharwat80:<password>@clusterecommerce.thmav9d.mongodb.net/
